@@ -1,0 +1,20 @@
+You like hosting people for dinner so you want to build a dinner party invitation site.
+A user can create parties, invite people to a party, and accept an invitation to someone else’s party.
+
+User
+-name
+*has_many :hosted_parties class_name: "Party" [optional]
+
+*has_many :invited_parties through:invitation source :party
+*has_many :invitations
+
+Invitation
+*belongs_to :guesses class_name :user
+*belongs_to :party
+
+
+Party
+*belongs_to :host class_name: "User" foreign_key: "user_id"
+
+*has_many :guesses through:invitation
+*has_many :invitation
