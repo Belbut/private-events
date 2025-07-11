@@ -2,17 +2,19 @@ A site for pet-sitting (watching someone’s pet while they’re gone). People c
 
 Pet
 -name (string)
--type (string) [inclusion: { in: %w(cat dog turtle)}]
-*belongs_to :owner class_name :user
-*has_many: sitters through: Agreement foreign_key: pet_id
+-type (string) [inclusion: { in: %w(cat dog turtle chicken rabbit)}]
+*belongs_to :owner class_name: "User" foreign_key: "user_id"
+*has_many :sitters through: Agreement
+*has_many :Agreement
 
 User
 -name (string)
-*has_many: pets [optional: true]
-*has_many: sitting_pets  through: Agreement foreign_key: sitter_id [optional: true]
+*has_many :pets [optional]
+*has_many :sitting_pets through:Agreements source: "pet"
+*has_many :Agreements foreign_key: "sitter_id"
 
-Agreement
+Agreements
 -start-date (date)
 -end-date (date)
-*belongs_to: pet
-*belongs_to: sitter, class_name: user
+*belongs_to :Pet
+*belongs_to :sitter class_name "User"
