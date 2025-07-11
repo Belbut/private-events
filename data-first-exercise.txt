@@ -1,0 +1,18 @@
+A site for pet-sitting (watching someone’s pet while they’re gone). People can babysit for multiple pets and pets can have multiple petsitters.
+
+Pet
+-name (string)
+-type (string) [inclusion: { in: %w(cat dog turtle)}]
+*belongs_to :owner class_name :user
+*has_many: sitters through: Agreement foreign_key: pet_id
+
+User
+-name (string)
+*has_many: pets [optional: true]
+*has_many: sitting_pets  through: Agreement foreign_key: sitter_id [optional: true]
+
+Agreement
+-start-date (date)
+-end-date (date)
+*belongs_to: pet
+*belongs_to: sitter, class_name: user
