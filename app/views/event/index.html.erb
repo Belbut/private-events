@@ -3,8 +3,8 @@
 
 
 <h2>list of all Events</h1>
-<div class="calendar_flex">
-<%@events.each do |event|%>
+<div class="calendar">
+<%@events.sort_by(&:date).each do |event|%>
     <div class="event">
         <h3><%= event.name %></h3>
         <div><%= event.date %></div>
