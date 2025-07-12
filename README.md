@@ -10,12 +10,31 @@ This project will require you to model many-to-many relationships and also to be
 
 Data Model-----------------------------------------------
 
+User
+-name
+*has_many: events_hosted class:Event foreign_key: host_id
+
+*has_many: events_attending though:Invitation source:event
+*has_many: Invitations foreign_key: attendee_id
+
+Event
+-date
+-location
+*belongs_to: host class_name:User
+*has_many: Invitations 
+
+Invitation
+belongs_to: event
+belongs_to: attendee class_name: User
+
+# First try
+
 
 User
 -name
 has_many: hosted_events class_name: Event foreign_key:host_id
 
-has_many: invited_events through:Invitation source:event
+has_many: invited_events through:Invitation source:event_id
 has_many: Invitations foreign_key:attendee_id
 
 Event
