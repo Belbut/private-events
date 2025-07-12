@@ -1,0 +1,15 @@
+<h1>Event#index</h1>
+<p>Find me in app/views/event/index.html.erb</p>
+
+
+<h2>list of all Events</h1>
+<div class="calendar_flex">
+<%@events.each do |event|%>
+    <div class="event">
+        <h3><%= event.name %></h3>
+        <div><%= event.date %></div>
+        <div><%= event.location %></div>
+    </div>
+<%end%>
+</div>
+
