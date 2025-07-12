@@ -1,0 +1,25 @@
+Extra credit (tricky): 
+You and your friends just love posting things and following each other.
+How would you set up the models so a user can follow another user?
+
+User
+-name
+has_many: followers through:passive_relation source:follower_id
+has_many: passive_relations class_name: Relationship foreign_key:followed_id  #In this relation i am followed => fk=me
+
+has_many: followings through:active_relations source:followed_id # i will receive [follower_id=me,followed_id] so the following are the selection of all the followed_id that represents User(me).followings
+has_many: active_relations class_name:Relationship foreign_key: follower_id   #In this relation i am the follower => fk=me
+
+Relationship
+*belongs_to :follower class_name: User
+*belongs_to :followed class_name: User 
+
+
+
+Refection since this wasn't making much sense for me.
+So I am trying to establish an association where I can then retrieve all the passive relations that the User has. In this example, the user is me. So all my passive relations refer to all the users that are following me.
+In the table relationships, I have all of the connections between users. So to know if an established connection represents the one that I am looking for—in this case, users that are following me (called passive relations)—then I will need to share my personal ID with Rails.
+For example, my user_id = 69. Then Rails with ActiveRecord will look in the relationships table for this user_id to retrieve the data. But in this case, there is no column called user_id, only follower_id and followed_id, both of class User.
+So what I need to define is that when Rails searches for the passive relations that I have (users that are following me), I need to share my ID because that is the only constant variable. And I want to share the ID in a way that hints to Rails that my user_id is only relevant when present in the column followed_id (should rename to followed to better represent the relationship dynamic).
+So what the association should be is:
+*has_many :passive_relations, class_name: "Relationship", foreign_key: :followed_id
