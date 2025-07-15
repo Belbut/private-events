@@ -1,9 +1,13 @@
 <div class="session_handler">
     <%if user_signed_in?%>
-        <div>Hello, <%=current_user.name%></div>
+        <%user_name = current_user.name.capitalize%>
+        <div>Hello, <%=user_name%><%= link_to " Go to profile", user_path(current_user.id)%></div>
+    <div>
+        <%= link_to "See all users", users_path%>
         <%= button_to "Logout", destroy_user_session_path, method: :delete, class:"as-link"%>
+    </div>
     <%else%>
-        <div>Hello, stranger</div>
+        <div>Hello, Stranger</div>
         <%=link_to("Log in", new_user_session_path)%>
     <%end%>
 </div>

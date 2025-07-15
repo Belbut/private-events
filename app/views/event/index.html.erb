@@ -3,7 +3,8 @@
 
 <%=render "shared/session_handler"%>
 
-<h2>list of all Events</h1>
+<h2>All Events</h2>
+<%# <%=link_to "Add event", %>
 <div class="calendar">
 <%@events.sort_by(&:date).each do |event|%>
     <div class="event">

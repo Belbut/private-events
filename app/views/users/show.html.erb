@@ -1,6 +1,8 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
 
+<%=link_to "Events Feed", event_index_path%>
+
 <h2>You are seeing <%=@user.name.capitalize%> profile</h2>
 <%=image_tag("logo.jpg", alt:"test text")%>
 

@@ -1,7 +1,9 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
 
-<h2>All current users of the app</h2>
+<%=render "shared/session_handler"%>
+
+<h2>All current users of the app [<%=@users.size%>]</h2>
 <%@users.each do |user|%>
-<p>-> <%=user.name.capitalize%></p>
+<p>-> <%=link_to user.name.capitalize, user_path(user.id)%></p>
 <%end%>
