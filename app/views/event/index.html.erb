@@ -2,9 +2,11 @@
 <p>Find me in app/views/event/index.html.erb</p>
 
 <%=render "shared/session_handler"%>
+<%= link_to "See all users", users_path%>
+
 
 <h2>All Events</h2>
-<%# <%=link_to "Add event", %>
+<%=link_to "Create event",  new_event_path%>
 <div class="calendar">
 <%@events.sort_by(&:date).each do |event|%>
     <div class="event">

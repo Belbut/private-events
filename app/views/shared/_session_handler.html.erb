@@ -3,7 +3,6 @@
         <%user_name = current_user.name.capitalize%>
         <div>Hello, <%=user_name%><%= link_to " Go to profile", user_path(current_user.id)%></div>
     <div>
-        <%= link_to "See all users", users_path%>
         <%= button_to "Logout", destroy_user_session_path, method: :delete, class:"as-link"%>
     </div>
     <%else%>
