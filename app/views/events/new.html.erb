@@ -1,0 +1,21 @@
+<h1>Events#new</h1>
+<p>Find me in app/views/events/new.html.erb</p>
+
+<%=render "shared/session_handler"%>
+
+<h1>Create New Event</h1>
+<%= form_with model: @event do |form|%>
+    <div>
+        <%=form.label :name, "Event Name:"%>
+        <%=form.text_field :name%>
+    </div>
+    <div>
+        <%=form.label :date, "Event Date:"%>
+        <%=form.date_field :date%>
+    </div>
+    <div>
+        <%=form.label :location, "Event Location:"%>
+        <%=form.text_field :location%>
+    </div>
+    <%=form.submit%>
+<%end%>
