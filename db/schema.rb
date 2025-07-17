@@ -12,9 +12,9 @@
 
 ActiveRecord::Schema[8.0].define(version: 2025_07_15_100957) do
   create_table "events", force: :cascade do |t|
-    t.date "date"
-    t.string "location"
-    t.string "name"
+    t.date "date", null: false
+    t.string "location", null: false
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "creator_id", null: false
