@@ -3,10 +3,16 @@
 
 <%=link_to "Events Feed", event_index_path%>
 
+<%if current_user == @user%>
+<h2>You are seeing your profile</h2>
+
+<%else%>
 <h2>You are seeing <%=@user.name.capitalize%> profile</h2>
+<%end%>
+
 <%=image_tag("logo.jpg", alt:"test text")%>
 
-<h3>All events created by <%=@user.name.capitalize%></h3>
+<h3>All events created by <%=@user.name.capitalize%>:</h3>
 <ul>
 <%@user.events_created.each do |event|%>
     <li>event.name</li>
