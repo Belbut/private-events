@@ -2,6 +2,7 @@
 <p>Find me in app/views/users/index.html.erb</p>
 
 <%=render "shared/session_handler"%>
+<%=link_to "Events Feed", events_path%>
 
 <h2>All current users of the app [<%=@users.size%>]</h2>
 <%@users.each do |user|%>
