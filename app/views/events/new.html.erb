@@ -4,19 +4,23 @@
 <%=render "shared/session_handler"%>
 
 <h1>Create New Event</h1>
-
+<% all_errors = @event.errors.as_json if @event.errors.any? %>
 <%= form_with model: @event do |form|%>
     <div>
         <%=form.label :name, "Event Name:"%>
         <%=form.text_field :name%>
+        <%=all_errors[:name].first unless all_errors.nil?%>
     </div>
     <div>
         <%=form.label :date, "Event Date:"%>
         <%=form.date_field :date%>
+        <%=all_errors[:date].first unless all_errors.nil?%>
+
     </div>
     <div>
         <%=form.label :location, "Event Location:"%>
         <%=form.text_field :location%>
+        <%=all_errors[:location].first unless all_errors.nil?%>
     </div>
     <%=form.submit%>
 <%end%>

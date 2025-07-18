@@ -25,3 +25,11 @@
     text-decoration: none;
     color: #0056b3; /* darker blue on hover */
   }
+
+  .field_with_errors {
+    display: inline;
+  }
+
+  .field_with_errors input {
+    border-color: red;
+  }
