@@ -1,0 +1,9 @@
+<div class="event">
+    <h3><%= event.name.capitalize %></h3>
+    <div><%= event.date %></div>
+    <div><%= event.location.capitalize %></div>
+    <%=event_path(event)%>
+    <% unless current_page?(event_path(event)) %>
+        <div><%= link_to "Link", event_path(event)%></div>
+    <%end%>
+</div>
