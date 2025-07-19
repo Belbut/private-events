@@ -7,4 +7,8 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   has_many :events_created, class_name: 'Event', foreign_key: 'creator_id'
+
+  # https://stackoverflow.com/questions/4632408/understanding-source-option-of-has-one-has-many-through-of-rails
+  has_many :invitations, foreign_key: 'attendee_id'
+  has_many :events_attending, through: :invitations, source: :event
 end
