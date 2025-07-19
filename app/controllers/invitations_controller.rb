@@ -1,9 +1,14 @@
 class InvitationsController < ApplicationController
-  def create; end
+  def create
+    event = Event.find(params[:event])
+    @inv = Invitation.new(event: event, attendee: current_user)
+    if @inv.save
+      redirect_to(event_path(params[:event]))
+    else
+      render 'event/index', status: :unprocessable_entity
+    end
+  end
 
-  def destroy; end
-
-  protected
-
-  def invitation_params; end
+  def destroy
+  end
 end
