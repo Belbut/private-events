@@ -4,11 +4,10 @@
 <%=render "shared/session_handler"%>
 <%=link_to "Events Feed", events_path%>
 <%=render @event%>
-<h2>Host:</h2>
-<%@host%>
+<h2>Host: <%=render @host%></h2>
 
 <h2>List of Attendees:</h2>
-<%if @attendees%>
+<%unless @attendees.empty?%>
 <ul>
     <%@attendees.each do |attendee|%>
     <li><%=render attendee %></li>
