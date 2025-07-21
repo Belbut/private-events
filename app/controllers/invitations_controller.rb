@@ -10,8 +10,8 @@ class InvitationsController < ApplicationController
   end
 
   def destroy
-    puts '*******************************************************'
     @inv = Invitation.find_by(event: params[:id], attendee: current_user)
     @inv.destroy
+    redirect_to request.original_url, notice: 'Invitation declined!'
   end
 end
