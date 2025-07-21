@@ -11,6 +11,8 @@ class InvitationsController < ApplicationController
 
   def destroy
     @inv = Invitation.find_by(event: params[:id], attendee: current_user)
+    return if @inv.nil?
+
     @inv.destroy
     redirect_to request.original_url, notice: 'Invitation declined!'
   end
