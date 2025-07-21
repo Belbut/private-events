@@ -15,6 +15,38 @@
 <h3>All events created by <%=@user.name.capitalize%>:</h3>
 <ul>
 <%@user.events_created.each do |event|%>
-    <li>event.name</li>
+    <li><%=event.name%></li>
 <%end%>
 </ul>
+
+<%categorized_events = {attended:[], attending:[]}%>
+<%@invited_events.each do |event|%>
+  <%event.date >= Time.current ? categorized_events[:attending].append(event) : categorized_events[:attended].append(event)%>
+<%end%>
+
+<h3>Events to attend</h3>
+<%unless categorized_events[:attending].empty?%>
+    <ul>        
+        <%categorized_events[:attending].sort_by(&:date).each do |event|%>
+            <li><%=event.name + " " + event.class%></li>
+        <%end%>
+    </ul>
+
+<%else%>
+
+    <div>-</div>
+<%end%>
+
+
+
+<h3>Events attended</h3>
+<%unless categorized_events[:attended].empty?%>
+    <ul>        
+        <%categorized_events[:attended].sort_by(&:date).each do |event|%>
+            <li><%=event.name + " " + event.date.to_s%></li>
+        <%end%>
+    </ul>
+
+<%else%>
+    <div>-</div>
+<%end%>
