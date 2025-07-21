@@ -6,8 +6,10 @@
         <div><%= link_to "Link", event_path(event)%></div>
     <%end%>
     <%if user_signed_in?%>
-    <div>
-        <%=button_to "Attend", controller:"invitations", action: "create", params:{event:event} %>
-    </div>
+        <div>
+            <%=button_to "Accept", controller:"invitations", action: "create", params:{event:event} %>
+            <%#the route is invitation DELETE /invitations/:id(.:format) invitations#destroy %>
+            <%=button_to "Decline", {controller: :invitations, action: "destroy", id:event},method: :delete %>
+        </div>
     <%end%>
 </div>

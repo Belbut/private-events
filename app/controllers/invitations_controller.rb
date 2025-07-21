@@ -10,5 +10,8 @@ class InvitationsController < ApplicationController
   end
 
   def destroy
+    puts '*******************************************************'
+    @inv = Invitation.find_by(event: params[:id], attendee: current_user)
+    @inv.destroy
   end
 end
