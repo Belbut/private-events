@@ -22,6 +22,8 @@ Event
 -location
 *belongs_to: host class_name:User
 *has_many: Invitations 
+  has_many :attendees, through: :invitations
+
 
 Invitation
 belongs_to: event
