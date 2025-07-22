@@ -22,28 +22,10 @@
 
 
 <h3>Events to attend</h3>
-<%future_events = @invited_events.where("date >= :current_date", {current_date: Date.current})%>
-<%unless future_events.empty?%>
-    <ul>        
-        <%future_events.each do |event|%>
-            <li><%="#{event.name.capitalize} #{event.date} "%> <%= link_to "*", event_path(event.id) %></li>
-        <%end%>
-    </ul>
-
-<%else%>
-    <div>-</div>
-<%end%>
+<%future_events = @invited_events.where("date > :current_date", {current_date: Date.current})%>
+<%=render partial:"shared/list_events", object: future_events%>
 
 
-<%past_events = @invited_events.where("date < :current_date", {current_date: Date.current})%>
 <h3>Events attended</h3>
-<%unless past_events.empty?%>
-    <ul>        
-        <%past_events.each do |event|%>
-            <li><%="#{event.name.capitalize} #{event.date} "%> <%= link_to "*", event_path(event.id) %></li>
-        <%end%>
-    </ul>
-
-<%else%>
-    <div>-</div>
-<%end%>
+<%past_events = @invited_events.where("date <= :current_date", {current_date: Date.current})%>
+<%=render partial:"shared/list_events", object: past_events%>

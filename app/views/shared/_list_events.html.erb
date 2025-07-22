@@ -1,0 +1,10 @@
+
+<%unless list_events.empty?%>
+    <ul>        
+        <%list_events.each do |event|%>
+            <li><%="#{event.name.capitalize} #{event.date} "%> <%= link_to "*", event_path(event.id) %></li>
+        <%end%>
+    </ul>
+<%else%>
+    <div>-</div>
+<%end%>
