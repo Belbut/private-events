@@ -27,7 +27,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
 
-    redirect_to user_path(current_user)
+    redirect_to events_path, notice: 'You deleted the event!'
   end
 
   def edit; end
