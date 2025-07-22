@@ -13,19 +13,14 @@
 <%=image_tag("logo.jpg", alt:"test text")%>
 
 <h3>All events created by <%=@user.name.capitalize%>:</h3>
-<ul>
-<%@user.events_created.each do |event|%>
-    <li><%=event.name%></li>
-<%end%>
-</ul>
-
+<%= render partial: "shared/list_events", object:@user.events_created, print_date: false%>
 
 
 <h3>Events to attend</h3>
 <%future_events = @invited_events.where("date > :current_date", {current_date: Date.current})%>
-<%=render partial:"shared/list_events", object: future_events%>
+<%=render partial:"shared/list_events", object: future_events %>
 
 
 <h3>Events attended</h3>
 <%past_events = @invited_events.where("date <= :current_date", {current_date: Date.current})%>
-<%=render partial:"shared/list_events", object: past_events%>
+<%=render partial:"shared/list_events", object: past_events%> 
