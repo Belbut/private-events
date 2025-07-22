@@ -8,11 +8,6 @@ class Event < ApplicationRecord
   has_many :invitations
   has_many :attendees, through: :invitations
 
-  def self.past
-    Event.where('date <= ?', Date.current).order(:date)
-  end
-
-  def self.upcoming
-    Event.where('date > ?', Date.current).order(:date)
-  end
+  scope :past, -> { where('date <= ?', Date.current) }
+  scope :upcoming, -> { where('date > ?', Date.current) }
 end
