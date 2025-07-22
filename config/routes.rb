@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     registrations: 'user/registrations'
   }
   resources :users, only: %i[index show]
-  resources :events, only: %i[index new create show]
+  resources :events, only: %i[index new create show destroy edit]
   resources :invitations, only: %i[create destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

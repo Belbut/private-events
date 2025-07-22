@@ -5,8 +5,8 @@ class Event < ApplicationRecord
 
   belongs_to :creator, class_name: 'User'
 
-  has_many :invitations
-  has_many :attendees, through: :invitations
+  has_many :invitations, dependent: :delete_all
+  has_many :attendees, through: :invitations , dependent: :delete_all
 
   scope :past, -> { where('date <= ?', Date.current) }
   scope :upcoming, -> { where('date > ?', Date.current) }

@@ -6,9 +6,9 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
-  has_many :events_created, class_name: 'Event', foreign_key: 'creator_id'
+  has_many :events_created, class_name: 'Event', foreign_key: 'creator_id', dependent: :nullify
 
   # https://stackoverflow.com/questions/4632408/understanding-source-option-of-has-one-has-many-through-of-rails
-  has_many :invitations, foreign_key: 'attendee_id'
-  has_many :events_invited, through: :invitations, source: :event
+  has_many :invitations, foreign_key: 'attendee_id', dependent: :delete_all
+  has_many :events_invited, through: :invitations, source: :event, dependent: :delete_all
 end

@@ -23,6 +23,15 @@ class EventsController < ApplicationController
     @attendees = @event.attendees
   end
 
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+
+    redirect_to user_path(current_user)
+  end
+
+  def edit; end
+
   protected
 
   def event_params
