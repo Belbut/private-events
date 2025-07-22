@@ -7,4 +7,12 @@ class Event < ApplicationRecord
 
   has_many :invitations
   has_many :attendees, through: :invitations
+
+  def past
+    date <= Date.current
+  end
+
+  def upcoming
+    !past
+  end
 end

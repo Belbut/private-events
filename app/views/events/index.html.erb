@@ -10,6 +10,7 @@
 <div class="calendar">
 <%@events.sort_by(&:date).each do |event|%>
     <%=render event %>
+    <%=event.future%>
 <%end%>
 </div>
 
