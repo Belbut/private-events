@@ -19,31 +19,28 @@
 <%end%>
 </ul>
 
-<%categorized_events = {attended:[], attending:[]}%>
-<%@invited_events.each do |event|%>
-  <%event.date >= Time.current ? categorized_events[:attending].append(event) : categorized_events[:attended].append(event)%>
-<%end%>
+
 
 <h3>Events to attend</h3>
-<%unless categorized_events[:attending].empty?%>
+<%future_events = @invited_events.where("date >= :current_date", {current_date: Date.current})%>
+<%unless future_events.empty?%>
     <ul>        
-        <%categorized_events[:attending].sort_by(&:date).each do |event|%>
-            <li><%=event.name + " " + event.class%></li>
+        <%future_events.each do |event|%>
+            <li><%="#{event.name.capitalize} #{event.date} "%> <%= link_to "*", event_path(event.id) %></li>
         <%end%>
     </ul>
 
 <%else%>
-
     <div>-</div>
 <%end%>
 
 
-
+<%past_events = @invited_events.where("date < :current_date", {current_date: Date.current})%>
 <h3>Events attended</h3>
-<%unless categorized_events[:attended].empty?%>
+<%unless past_events.empty?%>
     <ul>        
-        <%categorized_events[:attended].sort_by(&:date).each do |event|%>
-            <li><%=event.name + " " + event.date.to_s%></li>
+        <%past_events.each do |event|%>
+            <li><%="#{event.name.capitalize} #{event.date} "%> <%= link_to "*", event_path(event.id) %></li>
         <%end%>
     </ul>
 
