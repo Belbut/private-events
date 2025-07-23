@@ -12,6 +12,7 @@
     <%=render event %>
 <%end%>
 </div>
+
 <h3>Total:<%=@events.count%></h3>
 <div><strong>Upcoming:</strong><%=Event.upcoming.count%></div>
 <div><strong>Pasted:</strong><%=Event.past.count%></div>
