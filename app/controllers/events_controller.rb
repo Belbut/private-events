@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  before_action :find_event, only: %i[show destroy edit update]
+
   def index
     @events = Event.all
   end
@@ -18,24 +20,19 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
     @host = @event.creator
     @attendees = @event.attendees
   end
 
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
 
     redirect_to events_path, notice: 'You deleted the event!'
   end
 
-  def edit
-    @event = Event.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to @event
     else
@@ -47,5 +44,9 @@ class EventsController < ApplicationController
 
   def event_params
     params.expect(event: %i[name date location])
+  end
+
+  def find_event
+    @event = Event.find(params[:id])
   end
 end
